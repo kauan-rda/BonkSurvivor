@@ -1,0 +1,23 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Godot-specific ignores
+*.translation
+*.remap
+*.import
+
+# Mono-specific ignores for C# projects (bom ter, mesmo se não usar)
+.mono/
+bin/
+obj/
+
+# Arquivos de exportação
+export_presets.cfg
+*.zip
+*.exe
+*.pck
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db

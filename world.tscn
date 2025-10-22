@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxstjbr4uvpnk"]
+
+[ext_resource type="PackedScene" uid="uid://bjy4ep1gf1lqd" path="res://player.tscn" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://b64tiil4ibiir" path="res://enemy.tscn" id="2_fj7yv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gv5m4"]
+size = Vector2(836, 14)
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_f3sb7"]
+
+[node name="World" type="Node2D"]
+
+[node name="ground" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground"]
+position = Vector2(419, 9)
+shape = SubResource("RectangleShape2D_gv5m4")
+
+[node name="Sprite2D" type="Sprite2D" parent="ground"]
+position = Vector2(418.00003, 9)
+scale = Vector2(3.265625, -14.749998)
+texture = SubResource("CurveXYZTexture_f3sb7")
+
+[node name="player" parent="." instance=ExtResource("1_f3sb7")]
+position = Vector2(408, -64)
+
+[node name="Enemy" parent="." instance=ExtResource("2_fj7yv")]
