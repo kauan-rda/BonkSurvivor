@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxstjbr4uvpnk"]
+[gd_scene load_steps=8 format=3 uid="uid://bxstjbr4uvpnk"]
 
 [ext_resource type="PackedScene" uid="uid://bjy4ep1gf1lqd" path="res://player.tscn" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://b64tiil4ibiir" path="res://enemy.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://cuoswnkyxdxh3" path="res://PowerUps/SpawnerFonteDaSorte.tscn" id="3_tlwt5"]
+[ext_resource type="Script" uid="uid://bdcoyac15r74j" path="res://PowerUps/spawner.gd" id="4_036b0"]
+[ext_resource type="PackedScene" uid="uid://f8mlscgixirf" path="res://PowerUps/FonteDaSorte.tscn" id="5_dwbse"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gv5m4"]
 size = Vector2(836, 14)
@@ -29,4 +31,8 @@ position = Vector2(408, -64)
 
 [node name="ContainerFontesDaSorte" type="Node2D" parent="."]
 
-[node name="SpawnerFonteDaSorte" parent="ContainerFontesDaSorte" instance=ExtResource("3_tlwt5")]
+[node name="SpawnerFonteDaSorte" parent="ContainerFontesDaSorte" node_paths=PackedStringArray("container_fontes") instance=ExtResource("3_tlwt5")]
+position = Vector2(384, -239)
+script = ExtResource("4_036b0")
+FonteDaSorte = ExtResource("5_dwbse")
+container_fontes = NodePath("..")

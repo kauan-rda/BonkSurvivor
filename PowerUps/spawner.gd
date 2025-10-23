@@ -13,8 +13,6 @@ func _ready() -> void:
 	if container_fontes == null:
 		container_fontes = get_parent()
 	
-	timer.timeout.connect(_on_timer_timeout)
-	
 func _on_timer_timeout():
 	if FonteDaSorte == null:
 		print("Objeto FonteDaSorte Nao definido")
@@ -29,12 +27,16 @@ func _on_timer_timeout():
 	nova_instancia.global_position = local_escolhido.global_position
 		
 	container_fontes.add_child(nova_instancia)
+	print("chegou aqui")
+	
+	if container_fontes == null:
+		container_fontes = get_parent()
 		
 	
 	for filho in $Posicoes.get_children():
 		if filho is Node2D:
 			posicoes_spawn.append(filho)
-
+	timer.timeout.connect(_on_timer_timeout)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

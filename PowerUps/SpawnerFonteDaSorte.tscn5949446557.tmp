@@ -7,10 +7,10 @@
 [node name="Spawner" type="Node2D" parent="."]
 script = ExtResource("1_4bbkm")
 
+[node name="Timer" type="Timer" parent="Spawner"]
+wait_time = 45.0
+autostart = true
+
 [node name="Posicoes" type="Node2D" parent="Spawner"]
 
 [node name="Marker2D" type="Marker2D" parent="Spawner/Posicoes"]
-position = Vector2(400, -64)
-
-[node name="Timer" type="Timer" parent="Spawner"]
-autostart = true
