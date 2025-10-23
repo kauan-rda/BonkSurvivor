@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://f8mlscgixirf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xgr3"]
+
+[node name="FonteDaSorte" type="Node2D"]
+
+[node name="FonteDaSorte" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FonteDaSorte"]
+shape = SubResource("RectangleShape2D_5xgr3")
