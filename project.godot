@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="ElBonk"
-run/main_scene="uid://bxstjbr4uvpnk"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+run/main_scene="res://world.tscn"
+config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [input]
