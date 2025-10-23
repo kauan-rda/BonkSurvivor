@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxstjbr4uvpnk"]
+[gd_scene load_steps=13 format=3 uid="uid://bxstjbr4uvpnk"]
 
 [ext_resource type="PackedScene" uid="uid://bjy4ep1gf1lqd" path="res://player.tscn" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://b73at0n6nbn8t" path="res://world.gd" id="1_ioo17"]
 [ext_resource type="TileSet" uid="uid://clqpvht04fxne" path="res://Assets/Tiles/Swamp.tres" id="3_tlwt5"]
 [ext_resource type="Texture2D" uid="uid://bgl8j6s1lquyr" path="res://Assets/Background/1.png" id="4_gbfbk"]
 [ext_resource type="Texture2D" uid="uid://1qjq88iaw4l1" path="res://Assets/Background/2.png" id="5_ioo17"]
@@ -14,7 +15,14 @@ size = Vector2(836, 14)
 
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_f3sb7"]
 
+[sub_resource type="Curve2D" id="Curve2D_gbfbk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -151, -379, 0, 0, 0, 0, 968, -383)
+}
+point_count = 2
+
 [node name="World" type="Node2D"]
+script = ExtResource("1_ioo17")
 
 [node name="ground" type="StaticBody2D" parent="."]
 
@@ -67,3 +75,18 @@ texture = ExtResource("8_k3n1d")
 
 [node name="EnemyDoor" parent="." instance=ExtResource("8_gbfbk")]
 position = Vector2(-77, -140)
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(0, -89)
+curve = SubResource("Curve2D_gbfbk")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(-151, -379)
+rotation = -0.003574605
+
+[node name="TimerFontes" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[connection signal="timeout" from="TimerFontes" to="." method="_on_timer_fontes_timeout"]
