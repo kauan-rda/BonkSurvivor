@@ -23,3 +23,7 @@ func _physics_process(delta):
 		if collision.get_collider().is_in_group("player"):
 			collision.get_collider().take_damage()
 			queue_free() # Inimigo se destrói ao causar dano
+
+
+func _on_shooter_enemy_timeout() -> void:
+	pass # Replace with function body.

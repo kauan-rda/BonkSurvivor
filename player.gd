@@ -1,54 +1,47 @@
 extends CharacterBody2D
 
 var health = 3
+
+# --- Constantes de Movimento Ajustadas ---
+
+# A velocidade de caminhada continua lenta
 const WALK_SPEED = 100.0
-const GRAVITY = 980.0
 
-# Novas constantes e variáveis para o Dash
-const DASH_SPEED = 600.0
-const DASH_DURATION = 0.15 # segundos
-const DASH_COOLDOWN = 0.5 # segundos
+# A gravidade foi um pouco aumentada para o pulo ter mais "peso" na descida
+const GRAVITY = 800.0
 
-var is_dashing = false
-var can_dash = true
+# NOVAS constantes para o "Bonk" (o antigo dash)
+# Força do pulo para cima. É um valor negativo porque o eixo Y é para baixo.
+const BONK_JUMP_FORCE = -450.0 
+# Força do movimento lateral DURANTE o pulo. Menor que o dash antigo.
+const BONK_AIR_SPEED = 300.0 
 
-# Referências para os nós Timer
-@onready var dash_timer = $DashTimer
-@onready var dash_cooldown_timer = $DashCooldownTimer
 
 func _physics_process(delta):
-	# Não fazer nada se estiver dando dash
-	if is_dashing:
-		move_and_slide()
-		return
+	# 1. Aplicar Gravidade
+	# A gravidade é aplicada constantemente, a menos que o personagem esteja no chão.
+	if not is_on_floor():		velocity.y += GRAVITY * delta
 
-	if not is_on_floor():
-		velocity.y += GRAVITY * delta
+	# 2. Lógica do "Bonk" (Pulo)
+	# A condição agora é simples: o jogador apertou o botão E está no chão?
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		# Aplica a força vertical do pulo imediatamente
+		velocity.y = BONK_JUMP_FORCE
+		
+		# Verifica a direção para o movimento aéreo
+		var direction = Input.get_axis("ui_left", "ui_right")
+		velocity.x = direction * BONK_AIR_SPEED
 
-	# Input de movimento
-	var direction = Input.get_axis("ui_left", "ui_right")
-	velocity.x = direction * WALK_SPEED
-
-	# Input do Dash (Barra de espaço por padrão)
-	if Input.is_action_just_pressed("ui_accept") and can_dash and direction != 0:
-		start_dash(direction)
-
+	# 3. Lógica de Caminhada (Apenas no Chão)
+	# O movimento lateral normal só funciona quando o jogador está no chão.
+	# Isso evita que o jogador "deslize" no ar, dando mais controle ao pulo.
+	if is_on_floor():
+		var direction = Input.get_axis("ui_left", "ui_right")
+		velocity.x = direction * WALK_SPEED
+	
+	# 4. Executar o Movimento
+	# A função move_and_slide() aplica todas as mudanças de velocidade.
 	move_and_slide()
-
-func start_dash(direction):
-	is_dashing = true
-	can_dash = false
-	velocity.x = direction * DASH_SPEED
-	velocity.y = -150 # Um pequeno pulo para o dash ficar mais legal
-	dash_timer.start(DASH_DURATION)
-	dash_cooldown_timer.start(DASH_COOLDOWN)
-
-func _on_dash_timer_timeout():
-	is_dashing = false
-	velocity.x = 0 # Para o movimento abruptamente no final do dash
-
-func _on_dash_cooldown_timer_timeout():
-	can_dash = true
 
 func take_damage():
 	health -= 1
