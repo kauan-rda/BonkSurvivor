@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b64tiil4ibiir"]
 
-[ext_resource type="Script" uid="uid://b1olf1wqd3hi7" path="res://enemy.gd" id="1_4gyqm"]
+[ext_resource type="Script" uid="uid://p0r3418m2f2e" path="res://shooter_enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://dno4oeg3w338w" path="res://icon.svg" id="1_7k104"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4gyqm"]
@@ -15,4 +15,5 @@ script = ExtResource("1_4gyqm")
 shape = SubResource("CapsuleShape2D_4gyqm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.98691267, 0.30589902, 0.77095485, 1)
 texture = ExtResource("1_7k104")
