@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ccfq3rnvd68fn"]
 
 [ext_resource type="Script" uid="uid://c4ybunoknxwhi" path="res://enemy_door.gd" id="1_t40us"]
-[ext_resource type="Texture2D" uid="uid://dno4oeg3w338w" path="res://icon.svg" id="1_x1uqm"]
+[ext_resource type="Texture2D" uid="uid://c8pl23di3ofpe" path="res://ChatGPT Image 23 de out. de 2025, 21_15_24.png" id="2_t40us"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t40us"]
 size = Vector2(244, 245)
@@ -10,8 +10,8 @@ size = Vector2(244, 245)
 script = ExtResource("1_t40us")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
-texture = ExtResource("1_x1uqm")
+scale = Vector2(0.3388672, 0.3388672)
+texture = ExtResource("2_t40us")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
