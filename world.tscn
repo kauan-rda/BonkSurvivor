@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dnh6edwywsdb6" path="res://Assets/Background/3.png" id="6_wse8f"]
 [ext_resource type="Texture2D" uid="uid://din1bql78ambj" path="res://Assets/Background/4.png" id="7_ic0uy"]
 [ext_resource type="Texture2D" uid="uid://c1n4hjars1y1w" path="res://Assets/Background/5.png" id="8_k3n1d"]
-[ext_resource type="Script" uid="uid://e8gx03o8mr5a" path="res://game_manager.gd" id="9_ioo17"]
+[ext_resource type="Script" path="res://game_manager.gd" id="9_ioo17"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gv5m4"]
 size = Vector2(862, 45)
@@ -28,6 +28,48 @@ point_count = 2
 [node name="World" type="Node2D"]
 script = ExtResource("1_ioo17")
 
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="Node2D"]
+repeat_size = Vector2(1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_gbfbk")
+centered = false
+
+[node name="Parallax2D2" type="Parallax2D" parent="Node2D"]
+repeat_size = Vector2(1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D2"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_ioo17")
+centered = false
+
+[node name="Parallax2D3" type="Parallax2D" parent="Node2D"]
+repeat_size = Vector2(1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D3"]
+scale = Vector2(2, 2)
+texture = ExtResource("6_wse8f")
+centered = false
+
+[node name="Parallax2D4" type="Parallax2D" parent="Node2D"]
+repeat_size = Vector2(1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D4"]
+scale = Vector2(2, 2)
+texture = ExtResource("7_ic0uy")
+centered = false
+
+[node name="Parallax2D5" type="Parallax2D" parent="Node2D"]
+repeat_size = Vector2(1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D5"]
+scale = Vector2(2, 2)
+texture = ExtResource("8_k3n1d")
+centered = false
+
 [node name="ground" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ground"]
@@ -41,35 +83,6 @@ tile_set = ExtResource("3_tlwt5")
 [node name="player" parent="." instance=ExtResource("1_f3sb7")]
 position = Vector2(408, -64)
 scale = Vector2(3.425, 3.425)
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(408, -65)
-scale = Vector2(2, 1.9938271)
-texture = ExtResource("4_gbfbk")
-
-[node name="2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(408, -65)
-scale = Vector2(2, 1.9938271)
-texture = ExtResource("5_ioo17")
-
-[node name="3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(403, -126)
-scale = Vector2(2, 1.9938271)
-texture = ExtResource("6_wse8f")
-
-[node name="4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(408, -64)
-scale = Vector2(2, 1.9938271)
-texture = ExtResource("7_ic0uy")
-
-[node name="5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(408, -64.5)
-scale = Vector2(2, 1.9969136)
-texture = ExtResource("8_k3n1d")
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(0, -112)
