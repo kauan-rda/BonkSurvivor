@@ -7,7 +7,7 @@
 radius = 54.0
 height = 126.0
 
-[node name="shooter_enemy" type="CharacterBody2D" groups=["enemy"]]
+[node name="shooter_enemy" type="CharacterBody2D"]
 position = Vector2(266, -85)
 script = ExtResource("1_vfjn5")
 
@@ -18,9 +18,8 @@ shape = SubResource("CapsuleShape2D_4gyqm")
 modulate = Color(0.98279566, 0.41909307, 0.34380928, 1)
 texture = ExtResource("2_q0w40")
 
-[node name="ShootTimer" type="Timer" parent="." groups=["enemy"]]
+[node name="shooter_enemy" type="Timer" parent="." groups=["enemy"]]
 wait_time = 2.0
 autostart = true
 
-[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
-[connection signal="timeout" from="ShootTimer" to="." method="_on_shooter_enemy_timeout"]
+[connection signal="timeout" from="shooter_enemy" to="." method="_on_shooter_enemy_timeout"]
