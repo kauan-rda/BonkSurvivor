@@ -221,7 +221,6 @@ shape = SubResource("CapsuleShape2D_onrkg")
 one_shot = true
 
 [node name="DashCooldownTimer" type="Timer" parent="."]
-unique_name_in_owner = true
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
