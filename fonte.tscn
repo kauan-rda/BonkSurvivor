@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://da2kminmipw11"]
+[gd_scene load_steps=5 format=3 uid="uid://da2kminmipw11"]
 
 [ext_resource type="Script" uid="uid://bg4y80qb8mu24" path="res://fonte.gd" id="1_dryq7"]
 [ext_resource type="Texture2D" uid="uid://j4evt3ovnblj" path="res://ChatGPT Image 23 de out. de 2025, 21_21_07.png" id="2_80ff0"]
+[ext_resource type="PackedScene" uid="uid://bddo76gtpmldg" path="res://EfeitoLabel.tscn" id="3_31evc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dryq7"]
 size = Vector2(27.333336, 58)
@@ -17,5 +18,8 @@ texture = ExtResource("2_80ff0")
 position = Vector2(-0.49999952, 3.499998)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_dryq7")
+
+[node name="EfeitoLabel" parent="." instance=ExtResource("3_31evc")]
+text = ""
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
