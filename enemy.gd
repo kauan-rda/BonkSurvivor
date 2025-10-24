@@ -27,7 +27,3 @@ func _physics_process(delta):
 
 func _on_shooter_enemy_timeout() -> void:
 	pass # Replace with function body.
-
-
-func _on_shoot_timer_timeout() -> void:
-	pass # Replace with function body.

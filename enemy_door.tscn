@@ -1,28 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccfq3rnvd68fn"]
+[gd_scene load_steps=3 format=3 uid="uid://ccfq3rnvd68fn"]
 
-[ext_resource type="Script" uid="uid://c4ybunoknxwhi" path="res://enemy_door.gd" id="1_t40us"]
 [ext_resource type="Texture2D" uid="uid://dno4oeg3w338w" path="res://icon.svg" id="1_x1uqm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t40us"]
 size = Vector2(244, 245)
 
 [node name="EnemyDoor" type="Area2D"]
-script = ExtResource("1_t40us")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.59959286, 0.9999998, 0.36637178, 1)
 scale = Vector2(2, 2)
 texture = ExtResource("1_x1uqm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_t40us")
-
-[node name="SpawnTimer" type="Timer" parent="."]
-
-[node name="LifetimeTimer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
-[connection signal="timeout" from="LifetimeTimer" to="." method="_on_lifetime_timer_timeout"]
