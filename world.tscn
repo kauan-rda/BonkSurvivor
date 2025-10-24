@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bxstjbr4uvpnk"]
+[gd_scene load_steps=13 format=4 uid="uid://bxstjbr4uvpnk"]
 
 [ext_resource type="PackedScene" uid="uid://bjy4ep1gf1lqd" path="res://player.tscn" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://b73at0n6nbn8t" path="res://world.gd" id="1_ioo17"]
@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://1qjq88iaw4l1" path="res://Assets/Background/2.png" id="5_ioo17"]
 [ext_resource type="Texture2D" uid="uid://dnh6edwywsdb6" path="res://Assets/Background/3.png" id="6_wse8f"]
 [ext_resource type="Texture2D" uid="uid://din1bql78ambj" path="res://Assets/Background/4.png" id="7_ic0uy"]
-[ext_resource type="PackedScene" uid="uid://ccfq3rnvd68fn" path="res://enemy_door.tscn" id="8_gbfbk"]
 [ext_resource type="Texture2D" uid="uid://c1n4hjars1y1w" path="res://Assets/Background/5.png" id="8_k3n1d"]
+[ext_resource type="Script" uid="uid://e8gx03o8mr5a" path="res://game_manager.gd" id="9_ioo17"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gv5m4"]
 size = Vector2(862, 45)
@@ -16,6 +16,12 @@ size = Vector2(862, 45)
 [sub_resource type="Curve2D" id="Curve2D_gbfbk"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -140, 58, 0, 0, 0, 0, 957, 58)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_ioo17"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 23, -31, 0, 0, 0, 0, 845, -35)
 }
 point_count = 2
 
@@ -65,9 +71,6 @@ position = Vector2(408, -64.5)
 scale = Vector2(2, 1.9969136)
 texture = ExtResource("8_k3n1d")
 
-[node name="EnemyDoor" parent="." instance=ExtResource("8_gbfbk")]
-position = Vector2(-77, -140)
-
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(0, -112)
 curve = SubResource("Curve2D_gbfbk")
@@ -78,7 +81,28 @@ position = Vector2(-140, 58)
 
 [node name="TimerFontes" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 1.7449999999999999
+wait_time = 1.745
 autostart = true
 
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("9_ioo17")
+
+[node name="DoorSpawnTimer" type="Timer" parent="GameManager"]
+wait_time = 5.0
+autostart = true
+
+[node name="Path2D" type="Path2D" parent="GameManager"]
+curve = SubResource("Curve2D_ioo17")
+
+[node name="spawn" type="PathFollow2D" parent="GameManager/Path2D"]
+unique_name_in_owner = true
+position = Vector2(23, -31)
+rotation = -0.004866142
+
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(150, -24)
+
 [connection signal="timeout" from="TimerFontes" to="." method="_on_timer_fontes_timeout"]
+[connection signal="timeout" from="GameManager/DoorSpawnTimer" to="GameManager" method="_on_door_spawn_timer_timeout"]

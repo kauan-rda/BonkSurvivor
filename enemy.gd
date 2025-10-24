@@ -5,9 +5,13 @@ var player = null
 
 func _ready():
 	# Encontra o jogador na cena assim que o inimigo é criado
-	player = get_tree().get_first_node_in_group("Player")
+	player = get_tree().get_first_node_in_group("player")
+	
+	if player == null:
+		print("[DEBUG] INIMIGO DE PERSEGUIÇÃO: Não encontrei o jogador!")
 
 func _physics_process(delta):
+	# Só tenta se mover se o jogador foi encontrado com sucesso
 	if player:
 		# Calcula a direção até o jogador e se move
 		var direction = (player.global_position - global_position).normalized()
@@ -15,19 +19,9 @@ func _physics_process(delta):
 		move_and_slide()
 
 	# Checar se colidiu com o jogador
-	# O loop verifica todas as colisões que aconteceram neste frame
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		
-		# --> CORREÇÃO: Este IF agora está DENTRO do loop for <--
-		if collision.get_collider().is_in_group("Player"):
+		if collision.get_collider().is_in_group("player"):
 			collision.get_collider().take_damage()
 			queue_free() # Inimigo se destrói ao causar dano
-
-
-func _on_shooter_enemy_timeout() -> void:
-	pass # Replace with function body.
-
-
-func _on_shoot_timer_timeout() -> void:
-	pass # Replace with function body.

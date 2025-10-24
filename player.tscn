@@ -208,7 +208,7 @@ _data = {
 &"RESET": SubResource("Animation_pylmc")
 }
 
-[node name="player" type="CharacterBody2D" groups=["Player"]]
+[node name="player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -276,5 +276,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_pbfsw")
 }
 
+[node name="InvincibilityTimer" type="Timer" parent="." groups=["player"]]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="DashCooldownTimer" to="." method="_on_dash_cooldown_timer_timeout"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

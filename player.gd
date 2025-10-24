@@ -1,51 +1,65 @@
 extends CharacterBody2D
 
 var health = 3
-
-# --- Constantes de Movimento Ajustadas ---
-
-# A velocidade de caminhada continua lenta
-const WALK_SPEED = 100.0
-
-# A gravidade foi um pouco aumentada para o pulo ter mais "peso" na descida
+var WALK_SPEED = 100.0 # Mudamos de 'const' para 'var' para poder ser alterada
 const GRAVITY = 800.0
-
-# NOVAS constantes para o "Bonk" (o antigo dash)
-# Força do pulo para cima. É um valor negativo porque o eixo Y é para baixo.
 const BONK_JUMP_FORCE = -450.0 
-# Força do movimento lateral DURANTE o pulo. Menor que o dash antigo.
 const BONK_AIR_SPEED = 300.0 
 
+# Uma "flag" para saber se o jogador pode tomar dano
+var is_invincible = false
+# Referência para o nosso novo timer
+@onready var invincibility_timer = $InvincibilityTimer
+# Variável para guardar a velocidade original antes de qualquer power-up
+var original_walk_speed = WALK_SPEED
 
 func _physics_process(delta):
-	# 1. Aplicar Gravidade
-	# A gravidade é aplicada constantemente, a menos que o personagem esteja no chão.
-	if not is_on_floor():		velocity.y += GRAVITY * delta
+	if not is_on_floor():
+		velocity.y += GRAVITY * delta
 
-	# 2. Lógica do "Bonk" (Pulo)
-	# A condição agora é simples: o jogador apertou o botão E está no chão?
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		# Aplica a força vertical do pulo imediatamente
 		velocity.y = BONK_JUMP_FORCE
-		
-		# Verifica a direção para o movimento aéreo
 		var direction = Input.get_axis("ui_left", "ui_right")
 		velocity.x = direction * BONK_AIR_SPEED
 
-	# 3. Lógica de Caminhada (Apenas no Chão)
-	# O movimento lateral normal só funciona quando o jogador está no chão.
-	# Isso evita que o jogador "deslize" no ar, dando mais controle ao pulo.
 	if is_on_floor():
 		var direction = Input.get_axis("ui_left", "ui_right")
 		velocity.x = direction * WALK_SPEED
 	
-	# 4. Executar o Movimento
-	# A função move_and_slide() aplica todas as mudanças de velocidade.
 	move_and_slide()
 
 func take_damage():
+	if is_invincible:
+		return
+
 	health -= 1
-	print("Vida atual: ", health) # Para debug
+	is_invincible = true
+	invincibility_timer.start()
+	print("Vida atual: ", health)
+	
+	var tween = create_tween()
+	tween.tween_property($Sprite2D, "modulate", Color(1,1,1,0.5), 0.1)
+	tween.tween_property($Sprite2D, "modulate", Color(1,1,1,1), 0.1)
+	tween.set_loops(2)
+
 	if health <= 0:
 		print("GAME OVER")
-		get_tree().reload_current_scene() # Reinicia a fase
+		get_tree().reload_current_scene()
+
+func _on_invincibility_timer_timeout():
+	is_invincible = false
+
+# --- Novas Funções Corrigidas ---
+
+func aumentar_velocidade(quantidade):
+	# CORREÇÃO: Usando a variável WALK_SPEED
+	WALK_SPEED += quantidade
+	print("Velocidade aumentada para: ", WALK_SPEED)
+	
+	# Cria um timer de 5 segundos que, ao terminar, chama a função de reset
+	get_tree().create_timer(5.0).timeout.connect(_resetar_velocidade)
+
+func _resetar_velocidade():
+	# CORREÇÃO: Usando WALK_SPEED e o valor original guardado
+	WALK_SPEED = original_walk_speed
+	print("Velocidade restaurada para: ", WALK_SPEED)
