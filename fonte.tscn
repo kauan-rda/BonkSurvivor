@@ -1,9 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://da2kminmipw11"]
+[gd_scene load_steps=4 format=3 uid="uid://da2kminmipw11"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7xese"]
+[ext_resource type="Script" uid="uid://bg4y80qb8mu24" path="res://fonte.gd" id="1_dryq7"]
 
-[node name="Fonte" type="Node2D"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xu32n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dryq7"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_dryq7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
-texture = SubResource("NoiseTexture2D_7xese")
+texture = SubResource("NoiseTexture2D_xu32n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_dryq7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
