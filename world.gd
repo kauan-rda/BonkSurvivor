@@ -1,11 +1,10 @@
 extends Node2D
 
 func spawn_fonte():
-	var fonte = preload("res://fonte.tscn").instantiate()
+	var fonte = preload('res://fonte.tscn').instantiate()
 	%PathFollow2D.progress_ratio = randf()
 	fonte.global_position = %PathFollow2D.global_position
 	add_child(fonte)
 
-
-func _on_timer_timeout():
+func _on_timer_fontes_timeout() -> void:
 	spawn_fonte()

@@ -1,8 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxstjbr4uvpnk"]
+[gd_scene load_steps=13 format=3 uid="uid://bxstjbr4uvpnk"]
 
 [ext_resource type="PackedScene" uid="uid://bjy4ep1gf1lqd" path="res://player.tscn" id="1_f3sb7"]
-[ext_resource type="Script" uid="uid://b73at0n6nbn8t" path="res://world.gd" id="1_f4s5p"]
-[ext_resource type="PackedScene" uid="uid://ccfq3rnvd68fn" path="res://enemy_door.tscn" id="5_036b0"]
+[ext_resource type="Script" uid="uid://b73at0n6nbn8t" path="res://world.gd" id="1_ioo17"]
+[ext_resource type="TileSet" uid="uid://clqpvht04fxne" path="res://Assets/Tiles/Swamp.tres" id="3_tlwt5"]
+[ext_resource type="Texture2D" uid="uid://bgl8j6s1lquyr" path="res://Assets/Background/1.png" id="4_gbfbk"]
+[ext_resource type="Texture2D" uid="uid://1qjq88iaw4l1" path="res://Assets/Background/2.png" id="5_ioo17"]
+[ext_resource type="Texture2D" uid="uid://dnh6edwywsdb6" path="res://Assets/Background/3.png" id="6_wse8f"]
+[ext_resource type="Texture2D" uid="uid://din1bql78ambj" path="res://Assets/Background/4.png" id="7_ic0uy"]
+[ext_resource type="PackedScene" uid="uid://ccfq3rnvd68fn" path="res://enemy_door.tscn" id="8_gbfbk"]
+[ext_resource type="Texture2D" uid="uid://c1n4hjars1y1w" path="res://Assets/Background/5.png" id="8_k3n1d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gv5m4"]
 size = Vector2(836, 14)
@@ -10,7 +16,7 @@ size = Vector2(836, 14)
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_f3sb7"]
 
 [node name="World" type="Node2D"]
-script = ExtResource("1_f4s5p")
+script = ExtResource("1_ioo17")
 
 [node name="ground" type="StaticBody2D" parent="."]
 
@@ -19,12 +25,13 @@ position = Vector2(419, 9)
 shape = SubResource("RectangleShape2D_gv5m4")
 
 [node name="Sprite2D" type="Sprite2D" parent="ground"]
-position = Vector2(418, 9)
-scale = Vector2(3.26563, -14.75)
+position = Vector2(418.00003, 9)
+scale = Vector2(3.265625, -14.749998)
 texture = SubResource("CurveXYZTexture_f3sb7")
 
 [node name="player" parent="." instance=ExtResource("1_f3sb7")]
 position = Vector2(408, -64)
+scale = Vector2(3.425, 3.425)
 
 [node name="EnemyDoor" parent="." instance=ExtResource("5_036b0")]
 position = Vector2(123, -142)
