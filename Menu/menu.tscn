@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://brk4nabji6qj3"]
+
+[ext_resource type="Script" uid="uid://tm3be2csf6rk" path="res://Menu/menu.gd" id="1_ihied"]
+[ext_resource type="Texture2D" uid="uid://sdb5jgunsii4" path="res://Menu/Untitled-1.png" id="1_rwxi6"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 3.0
+offset_right = -1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ihied")
+metadata/_edit_horizontal_guides_ = [327.0]
+metadata/_edit_vertical_guides_ = [574.0]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = -3.0
+offset_top = -7.0
+offset_right = 1155.0
+offset_bottom = 645.0
+texture = ExtResource("1_rwxi6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 279.00006
+offset_top = 39.00006
+offset_right = 404.00006
+offset_bottom = 79.00006
+scale = Vector2(5.199999, 5.199999)
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.048
+offset_left = 41.53846
+offset_top = 55.576923
+offset_right = 112.61846
+offset_bottom = 156.57695
+scale = Vector2(0.5615384, 0.5615384)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TextureRect2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/TextureRect2/HBoxContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "Iniciar"
+
+[node name="Button3" type="Button" parent="VBoxContainer/TextureRect2/HBoxContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "Sair"
+
+[connection signal="pressed" from="VBoxContainer/TextureRect2/HBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/TextureRect2/HBoxContainer/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]

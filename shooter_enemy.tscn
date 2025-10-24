@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://dyv5h12w1p5yq"]
 
 [ext_resource type="Script" uid="uid://p0r3418m2f2e" path="res://shooter_enemy.gd" id="1_vfjn5"]
-[ext_resource type="Texture2D" uid="uid://dryglch23bs03" path="res://ChatGPT Image 23 de out. de 2025, 21_49_19.png" id="2_vfjn5"]
+[ext_resource type="Texture2D" uid="uid://c45jquhh01aus" path="res://ChatGPT Image 23 de out. de 2025, 21_49_19.png" id="2_vfjn5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4gyqm"]
 radius = 54.0
 height = 126.0
 
-[node name="shooter_enemy" type="CharacterBody2D"]
+[node name="shooter_enemy" type="CharacterBody2D" groups=["enemy"]]
 position = Vector2(266, -85)
 script = ExtResource("1_vfjn5")
 
