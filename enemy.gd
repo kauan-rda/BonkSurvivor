@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 80.0
+var SPEED = 80.0
 var player = null
 
 func _ready():
@@ -25,3 +25,14 @@ func _physics_process(delta):
 		if collision.get_collider().is_in_group("player"):
 			collision.get_collider().take_damage()
 			queue_free() # Inimigo se destrói ao causar dano
+
+func alterar_velocidade(quantidade, timer_time):
+	SPEED = quantidade
+	print("Velocidade aumentada para: ", SPEED)
+	# Cria um timer de 5 segundos que, ao terminar, chama a função de reset
+	get_tree().create_timer(timer_time).timeout.connect(alterar_velocidade)
+
+func _resetar_velocidade():
+	# CORREÇÃO: Usando WALK_SPEED e o valor original guardado
+	SPEED = 80
+	print("Velocidade restaurada para: ", SPEED)

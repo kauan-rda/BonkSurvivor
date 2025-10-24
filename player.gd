@@ -14,6 +14,9 @@ var is_invincible = false
 var original_walk_speed = WALK_SPEED
 
 func _physics_process(delta):
+	if global_position.y >= 500:
+		get_tree().reload_current_scene()
+		
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 
@@ -49,17 +52,19 @@ func take_damage():
 func _on_invincibility_timer_timeout():
 	is_invincible = false
 
+
 # --- Novas Funções Corrigidas ---
 
-func aumentar_velocidade(quantidade):
-	# CORREÇÃO: Usando a variável WALK_SPEED
-	WALK_SPEED += quantidade
+func alterar_velocidade(quantidade, timer_time):
+	WALK_SPEED = quantidade
 	print("Velocidade aumentada para: ", WALK_SPEED)
-	
 	# Cria um timer de 5 segundos que, ao terminar, chama a função de reset
-	get_tree().create_timer(5.0).timeout.connect(_resetar_velocidade)
+	get_tree().create_timer(timer_time).timeout.connect(alterar_velocidade)
 
 func _resetar_velocidade():
 	# CORREÇÃO: Usando WALK_SPEED e o valor original guardado
 	WALK_SPEED = original_walk_speed
 	print("Velocidade restaurada para: ", WALK_SPEED)
+	
+func full_health():
+	health = 3
