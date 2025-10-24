@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://c5yo4jh8x58uf" path="res://Assets/Stab.png" id="5_dw050"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
-radius = 59.0
-height = 122.0
+radius = 9.0
+height = 18.0
 
 [sub_resource type="Animation" id="Animation_b26j0"]
 resource_name = "Idle"
@@ -212,6 +212,7 @@ _data = {
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_onrkg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
