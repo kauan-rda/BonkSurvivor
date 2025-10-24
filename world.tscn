@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bxstjbr4uvpnk"]
+[gd_scene load_steps=13 format=3 uid="uid://bxstjbr4uvpnk"]
 
 [ext_resource type="PackedScene" uid="uid://bjy4ep1gf1lqd" path="res://player.tscn" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://b73at0n6nbn8t" path="res://world.gd" id="1_ioo17"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://din1bql78ambj" path="res://Assets/Background/4.png" id="7_ic0uy"]
 [ext_resource type="PackedScene" uid="uid://ccfq3rnvd68fn" path="res://enemy_door.tscn" id="8_gbfbk"]
 [ext_resource type="Texture2D" uid="uid://c1n4hjars1y1w" path="res://Assets/Background/5.png" id="8_k3n1d"]
-[ext_resource type="Script" uid="uid://c4ybunoknxwhi" path="res://enemy_door.gd" id="10_wse8f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gv5m4"]
 size = Vector2(836, 14)
@@ -18,7 +17,7 @@ size = Vector2(836, 14)
 
 [sub_resource type="Curve2D" id="Curve2D_gbfbk"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -151, -379, 0, 0, 0, 0, 968, -383)
+"points": PackedVector2Array(0, 0, 0, 0, -140, 83, 0, 0, 0, 0, 959, 73)
 }
 point_count = 2
 
@@ -76,7 +75,6 @@ texture = ExtResource("8_k3n1d")
 
 [node name="EnemyDoor" parent="." instance=ExtResource("8_gbfbk")]
 position = Vector2(-77, -140)
-script = ExtResource("10_wse8f")
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(0, -89)
@@ -84,8 +82,8 @@ curve = SubResource("Curve2D_gbfbk")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 unique_name_in_owner = true
-position = Vector2(-151, -379)
-rotation = -0.003574605
+position = Vector2(-140, 83)
+rotation = -0.009098931
 
 [node name="TimerFontes" type="Timer" parent="."]
 unique_name_in_owner = true
