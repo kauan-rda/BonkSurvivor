@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dyv5h12w1p5yq"]
 
-[ext_resource type="Script" uid="uid://b1olf1wqd3hi7" path="res://enemy.gd" id="1_vfjn5"]
-[ext_resource type="Texture2D" uid="uid://c45jquhh01aus" path="res://ChatGPT Image 23 de out. de 2025, 21_49_19.png" id="2_vfjn5"]
+[ext_resource type="Script" uid="uid://p0r3418m2f2e" path="res://shooter_enemy.gd" id="1_vfjn5"]
+[ext_resource type="Texture2D" uid="uid://dryglch23bs03" path="res://ChatGPT Image 23 de out. de 2025, 21_49_19.png" id="2_vfjn5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4gyqm"]
 radius = 54.0
@@ -21,8 +21,9 @@ texture = ExtResource("2_vfjn5")
 region_enabled = true
 region_rect = Rect2(41.877243, 56.479866, 187.07744, 321.05038)
 
-[node name="shooter_enemy" type="Timer" parent="." groups=["enemy"]]
+[node name="ShootTimer" type="Timer" parent="." groups=["enemy"]]
 wait_time = 2.0
 autostart = true
 
-[connection signal="timeout" from="shooter_enemy" to="." method="_on_shooter_enemy_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shooter_enemy_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
