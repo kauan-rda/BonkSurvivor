@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bddo76gtpmldg"]
+
+[ext_resource type="Script" uid="uid://btdrp01kjtjas" path="res://efeito_label.gd" id="1_2wvql"]
+
+[node name="EfeitoLabel" type="Label"]
+offset_left = -40.0
+offset_top = -80.0
+offset_right = 40.0
+offset_bottom = -46.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "olejnet"
+script = ExtResource("1_2wvql")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
